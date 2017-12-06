@@ -5,15 +5,27 @@
     xmlns:local="using:IValueConverterSample"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
     mc:Ignorable="d">
     <Page.Resources>
         <local:TestModel x:Key="TestModel"/>
         <local:BoolToValueConverter x:Key="BoolToValueConverter"/>
         <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <local:BoolToVisibilityConverter x:Key="InvertBoolToVisibilityConverter" InvertBoolean="True"/>
+        <converters:StringFormatConverter x:Key="StringFormatConverter"/>
+        <converters:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueValue="Green" FalseValue="Red"/>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           DataContext="{StaticResource TestModel}">
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+            <Style TargetType="ListBox">
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+        </Grid.Resources>
         <StackPanel>
             <TextBlock Text="TextBlock1" Visibility="{Binding FalseValue, Converter={StaticResource BoolToValueConverter},ConverterParameter=Visible, FallbackValue=Collapsed}"/>
             <TextBlock Text="TextBlock2" Visibility="{Binding TrueValue, Converter={StaticResource BoolToValueConverter},ConverterParameter=Visible, FallbackValue=Collapsed}"/>
@@ -23,6 +35,29 @@
 
             <TextBlock Text="TextBlock5" Visibility="{Binding FalseValue, Converter={StaticResource InvertBoolToVisibilityConverter}}"/>
             <TextBlock Text="TextBlock6" Visibility="{Binding TrueValue, Converter={StaticResource InvertBoolToVisibilityConverter}}"/>
+
+            <TextBlock Text="{Binding DoubleValue,Converter={StaticResource StringFormatConverter},ConverterParameter='{}{0:N2}'}"/>
+            <TextBlock Text="{Binding DoubleValue,Converter={StaticResource StringFormatConverter},ConverterParameter='There are {0:N0} Items'}"/>
+
+            <TextBlock Text="TextBlock7" Foreground="{Binding FalseValue, Converter={StaticResource BoolToObjectConverter}}"/>
+            <TextBlock Text="TextBlock8" Foreground="{Binding TrueValue, Converter={StaticResource BoolToObjectConverter}}"/>
+
+            <TextBlock Text="{Binding Path=ClickModeValue}"/>
+            <ListBox ItemsSource="{Binding ClickModes}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding }" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox ItemsSource="{Binding ClickModes}"/>
+            <ListBox ItemsSource="{Binding ClickModes}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource StringFormatConverter}}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 </Page>

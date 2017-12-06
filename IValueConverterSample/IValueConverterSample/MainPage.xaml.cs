@@ -30,14 +30,14 @@ namespace IValueConverterSample
 
     public class TestModel
     {
-        public bool TrueValue
-        {
-            get { return true; }
-        }
+        public bool TrueValue => true;
 
-        public bool FalseValue
-        {
-            get { return false; }
-        }
+        public bool FalseValue => false;
+
+        public double DoubleValue => 2000.12;
+
+        public ClickMode ClickModeValue => ClickMode.Release;
+
+        public IEnumerable<ClickMode> ClickModes => new List<ClickMode> { ClickMode.Hover, ClickMode.Press, ClickMode.Release };
     }
 }
