@@ -7,16 +7,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
     mc:Ignorable="d">
+    <Page.DataContext>
+        <local:TestModel />
+    </Page.DataContext>
     <Page.Resources>
-        <local:TestModel x:Key="TestModel"/>
         <local:BoolToValueConverter x:Key="BoolToValueConverter"/>
         <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <local:BoolToVisibilityConverter x:Key="InvertBoolToVisibilityConverter" InvertBoolean="True"/>
         <converters:StringFormatConverter x:Key="StringFormatConverter"/>
         <converters:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueValue="Green" FalseValue="Red"/>
+        <local:ValueConverter x:Key="ValueConverter"/>
+        <local:ValueConverter2 x:Key="ValueConverter2"/>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          DataContext="{StaticResource TestModel}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="FontSize" Value="20"/>
@@ -58,6 +61,8 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <local:MyButton Tag="10.1" Amount="{Binding Converter={StaticResource ValueConverter},Path=Tag,RelativeSource={RelativeSource Mode=Self}}" Margin="5"/>
+            <local:MyButton Amount="{Binding Converter={StaticResource ValueConverter2},ConverterParameter=10.1,RelativeSource={RelativeSource Mode=Self}}" Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>

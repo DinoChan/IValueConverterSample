@@ -39,5 +39,38 @@ namespace IValueConverterSample
         public ClickMode ClickModeValue => ClickMode.Release;
 
         public IEnumerable<ClickMode> ClickModes => new List<ClickMode> { ClickMode.Hover, ClickMode.Press, ClickMode.Release };
+      
+    }
+
+    public class MyButton : Button
+    {
+        /// <summary>
+        /// 获取或设置Amount的值
+        /// </summary>  
+        public decimal Amount
+        {
+            get { return (decimal)GetValue(AmountProperty); }
+            set { SetValue(AmountProperty, value); }
+        }
+
+        /// <summary>
+        /// 标识 Amount 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty AmountProperty =
+            DependencyProperty.Register("Amount", typeof(decimal), typeof(MyButton), new PropertyMetadata(default(decimal), OnAmountChanged));
+
+        private static void OnAmountChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            MyButton target = obj as MyButton;
+            decimal oldValue = (decimal)args.OldValue;
+            decimal newValue = (decimal)args.NewValue;
+            if (oldValue != newValue)
+                target.OnAmountChanged(oldValue, newValue);
+        }
+
+        protected virtual void OnAmountChanged(decimal oldValue, decimal newValue)
+        {
+            Content = "Amount is " + newValue;
+        }
     }
 }
