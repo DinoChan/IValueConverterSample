@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="BoolToValueConverter.cs" />
     <Compile Include="BoolToVisibilityConverter.cs" />
+    <Compile Include="DateTimeValueConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

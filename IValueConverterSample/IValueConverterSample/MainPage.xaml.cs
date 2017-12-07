@@ -42,7 +42,7 @@ namespace IValueConverterSample
       
     }
 
-    public class MyButton : Button
+    public class MyContentControl : ContentControl
     {
         /// <summary>
         /// 获取或设置Amount的值
@@ -57,11 +57,11 @@ namespace IValueConverterSample
         /// 标识 Amount 依赖属性。
         /// </summary>
         public static readonly DependencyProperty AmountProperty =
-            DependencyProperty.Register("Amount", typeof(decimal), typeof(MyButton), new PropertyMetadata(default(decimal), OnAmountChanged));
+            DependencyProperty.Register("Amount", typeof(decimal), typeof(MyContentControl), new PropertyMetadata(default(decimal), OnAmountChanged));
 
         private static void OnAmountChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            MyButton target = obj as MyButton;
+            MyContentControl target = obj as MyContentControl;
             decimal oldValue = (decimal)args.OldValue;
             decimal newValue = (decimal)args.NewValue;
             if (oldValue != newValue)
@@ -72,5 +72,8 @@ namespace IValueConverterSample
         {
             Content = "Amount is " + newValue;
         }
+
+
+
     }
 }
