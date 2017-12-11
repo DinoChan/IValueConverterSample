@@ -20,7 +20,7 @@
         <local:ValueConverter2 x:Key="ValueConverter2"/>
         <local:DateTimeValueConverter x:Key="DateTimeValueConverter"/>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800">
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="FontSize" Value="20"/>
@@ -65,8 +65,8 @@
             </ListBox>
             <local:MyContentControl Tag="10.1" Amount="{Binding Converter={StaticResource ValueConverter},Path=Tag,RelativeSource={RelativeSource Mode=Self}}" Margin="5"/>
             <local:MyContentControl Amount="{Binding Converter={StaticResource ValueConverter2},ConverterParameter=10.1,RelativeSource={RelativeSource Mode=Self}}" Margin="5"/>
-            <TextBlock Text="{Binding Converter={StaticResource DateTimeValueConverter},ConverterParameter=2018-1-1,RelativeSource={RelativeSource Mode=Self},ConverterLanguage=en-Us}"/>
-            <TextBlock Text="{Binding Converter={StaticResource DateTimeValueConverter},ConverterParameter=2018-1-1,RelativeSource={RelativeSource Mode=Self},ConverterLanguage=zh-CN}"/>
+            <TextBlock Text="{Binding Date,Converter={StaticResource DateTimeValueConverter},ConverterLanguage=en-Us}"/>
+            <TextBlock Text="{Binding Date,Converter={StaticResource DateTimeValueConverter},ConverterLanguage=zh-CN}"/>
             <TextBlock Text="{Binding Converter={StaticResource DateTimeValueConverter},ConverterParameter=2018-1-1,RelativeSource={RelativeSource Mode=Self},ConverterLanguage=zh-CN}" FontSize="20" Margin="30" Visibility="Collapsed"/>
         </StackPanel>
     </Grid>

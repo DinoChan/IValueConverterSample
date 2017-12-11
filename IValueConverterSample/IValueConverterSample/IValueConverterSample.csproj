@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BoolToBrushConverter.cs" />
     <Compile Include="BoolToValueConverter.cs" />
     <Compile Include="BoolToVisibilityConverter.cs" />
     <Compile Include="DateTimeValueConverter.cs" />
@@ -103,6 +104,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValueConverter.cs" />
+    <Compile Include="WhyUsingIValueConverterPage.xaml.cs">
+      <DependentUpon>WhyUsingIValueConverterPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -128,6 +132,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WhyUsingIValueConverterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

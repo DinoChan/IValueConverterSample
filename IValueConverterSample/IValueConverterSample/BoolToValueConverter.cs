@@ -8,10 +8,9 @@ namespace IValueConverterSample
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            
             if (value == null || (bool) value == false)
-
                 return DependencyProperty.UnsetValue;
+
             return parameter;
         }
 
