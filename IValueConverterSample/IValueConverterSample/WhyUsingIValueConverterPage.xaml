@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    xmlns:system="using:System"
     mc:Ignorable="d">
     <Page.DataContext>
         <local:TestResult/>
@@ -13,6 +14,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.Resources>
             <local:BoolToBrushConverter x:Key="BoolToBrushConverter"/>
+            <local:ValueConverter x:Key="ValueConverter"/>
         </Grid.Resources>
         <StackPanel>
             <TextBlock x:Name="ResultElement" Text="Score : 60" />
@@ -61,12 +63,15 @@
             </StackPanel>
             <Grid>
                 <Grid.Resources>
-                    <local:ValueConverter x:Key="ValueConverter"/>
+                    <local:StringWrapper x:Key="StringWrapper"/>
                 </Grid.Resources>
-                <Grid.DataContext>
-                    <local:StringWrapper/>
-                </Grid.DataContext>
-                <local:MyContentControl Amount="{Binding [10.01],Converter={StaticResource ValueConverter}}"/>
+                <local:MyContentControl Amount="{Binding [10.01],Source={StaticResource StringWrapper},Converter={StaticResource ValueConverter}}"/>
+            </Grid>
+            <Grid>
+                <Grid.Resources>
+                    <x:String x:Key="DecimalString">10.01</x:String>
+                </Grid.Resources>
+                <local:MyContentControl Amount="{Binding Source={StaticResource DecimalString},Converter={StaticResource ValueConverter}}"/>
             </Grid>
         </StackPanel>
     </Grid>
