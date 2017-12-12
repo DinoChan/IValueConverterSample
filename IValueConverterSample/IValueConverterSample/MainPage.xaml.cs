@@ -36,7 +36,7 @@ namespace IValueConverterSample
 
         public double DoubleValue => 2000.12;
 
-        public DateTime Date => DateTime.Now;
+        public DateTime Date => new DateTime(2017,12,25);
 
         public ClickMode ClickModeValue => ClickMode.Release;
 

@@ -59,6 +59,15 @@
                 <TextBlock Text="Passed" Foreground="Green" Visibility="{Binding Passed}"/>
                 <TextBlock Text="Failed" Foreground="Red" Visibility="{Binding Passed,Converter={StaticResource BoolNegationConverter}}"/>
             </StackPanel>
+            <Grid>
+                <Grid.Resources>
+                    <local:ValueConverter x:Key="ValueConverter"/>
+                </Grid.Resources>
+                <Grid.DataContext>
+                    <local:StringWrapper/>
+                </Grid.DataContext>
+                <local:MyContentControl Amount="{Binding [10.01],Converter={StaticResource ValueConverter}}"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </Page>
